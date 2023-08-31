@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+
+	<title>Hello World!</title>
+	<script src="https://pixijs.download/release/pixi.js"></script>
+</head>
+<body>
+	<h1>Hello World!</h1>
+	We are using Node.js <span id="node-version"></span>,
+	Chromium <span id="chrome-version"></span>,
+	and Electron <span id="electron-version"></span>.
+
+	<script>
+		// Create the application helper and add its render target to the page
+		let app = new PIXI.Application({ width: 640, height: 360 });
+		document.body.appendChild(app.view);
+
+		// Create the sprite and add it to the stage
+		let sprite = PIXI.Sprite.from('sample.png');
+		app.stage.addChild(sprite);
+
+		// Add a ticker callback to move the sprite back and forth
+		let elapsed = 0.0;
+		app.ticker.add((delta) => {
+			elapsed += delta;
+			sprite.x = 100.0 + Math.cos(elapsed/50.0) * 100.0;
+		});
+	</script>
+</body>
+</html>
